@@ -1,0 +1,43 @@
+<div *ngIf="flag">
+    <div class="pt-3">
+        <h1 class="text-center"> All characters</h1>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <button class="btn btn-primary" [disabled]="favs == false" [routerLink]="['/favorites']">Favorites</button>
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+            <h3>See</h3>
+            <button class="btn btn-success m-2" [disabled]="itemsPerPage==6" (click)="changeItemsPerPage(6)">6</button>
+            <button class="btn btn-success m-2" [disabled]="itemsPerPage==12" (click)="changeItemsPerPage(12)">12</button>
+            <button class="btn btn-success m-2" [disabled]="itemsPerPage==18" (click)="changeItemsPerPage(18)">18</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" *ngFor="let character of characters">
+            <div class="card card-bg mb-3" (click)="redirectToCharacter(character.id)">
+                <div class="row ">
+                    <div class="col-md-5 d-flex justify-content-center p-0 ">
+                        <img class="img-fluid " src="{{character.image}} " alt="character image " style="min-height: 216px; ">
+                    </div>
+                    <div class="col-md-7 p-0 ">
+                        <div class="card-body ">
+                            <h5 class="card-title m-0 ">{{character.id}} - {{character.name}}</h5>
+                            <p class="card-text m-0 "><small [ngStyle]="{'color': character.status == 'Alive' ? 'green' : character.status == 'Dead' ? 'red' : 'grey'}"><i class="fas fa-circle"></i></small> {{character.status}} - {{character.species}}</p>
+                            <p class="card-text m-0 "><small>Last known location: </small></p>
+                            <p class="card-text m-0 ">{{character.location.name}}</p>
+                            <p class="card-text m-0 "><small>First seen in:</small></p>
+                            <p class="card-text m-0 ">{{character.firstEpisode}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 pb-3 d-flex justify-content-between">
+        <button class="btn btn-primary" [disabled]="actualPage==1" (click)="changePageto('left')"><i class="fas fa-arrow-left"></i></button>
+        <h5 class="m-0 text-white">{{itemsPerPage*actualPage}} - {{allCharacters}}</h5>
+        <button class="btn btn-primary" [disabled]="actualPage*itemsPerPage==allCharacters" (click)="changePageto('right')"><i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>

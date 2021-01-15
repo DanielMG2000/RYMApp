@@ -1,0 +1,30 @@
+<div *ngIf="flag" class="m-5">
+    <div class="card ">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="{{character.image}}" class="card-img-top" alt="character img">
+                    <h5 class="card-title mt-3 text-center">{{character.name}}</h5>
+                    <hr>
+                    <p class="card-text m-0 "><small [ngStyle]="{'color': character.status == 'Alive' ? 'green' : character.status == 'Dead' ? 'red' : 'grey'}"><i class="fas fa-circle"></i></small> {{character.status}} - {{character.species}}</p>
+                    <p class="card-text m-0 "><small>Last known location: </small></p>
+                    <p class="card-text m-0 ">{{character.location.name}}</p>
+                    <p class="card-text m-0 "><small>First seen in:</small></p>
+                    <p class="card-text m-0 ">{{character.firstEpisode}}</p>
+                    <button class="btn btn-danger m-1" [routerLink]="['/home']"><i class="fas fa-chevron-left"></i>Regresar</button>
+                    <button class="btn btn-primary m-1" (click)="setFavorite()">Favorito <i class="fas fa-heart-circle"></i></button>
+                    <hr>
+                </div>
+                <div class="col-sm-6">
+                    <h3 class="text-success text-center">Lista de episodios</h3>
+                    <ul *ngFor="let episode of episodes">
+                        <li (click)="chargeDetails(episode.url)">
+                            <p>{{episode.name}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
