@@ -47,10 +47,17 @@ export class CardsComponent implements OnInit {
   }
 
   getCharacters() {
+    // this.rickAndMortyService
+    //   .getApiCharacters(this.arrayIds)
+    //   .subscribe((characters) => {
+    //     this.characters = characters;
+    //     this.setEpisode();
+    //   });
+
     this.rickAndMortyService
-      .getApiCharacters(this.arrayIds)
+      .getAllCharacters(this.actualPage, this.itemsPerPage)
       .subscribe((characters) => {
-        this.characters = characters;
+        this.characters = characters.results;
         this.setEpisode();
       });
   }

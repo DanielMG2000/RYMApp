@@ -10,6 +10,7 @@ import { character } from '../Models/character.model';
 })
 export class RickAndMortyApiService {
   private ApiUrl = environment.UrlApi;
+  private MyApiUrl = environment.UrlMyApi;
 
   constructor(private http: HttpClient) {}
 
@@ -17,15 +18,21 @@ export class RickAndMortyApiService {
     return this.http.get<apiData>(`${this.ApiUrl}/character/`);
   }
 
-  getApiCharacters(ids): Observable<character[]> {
+  getApiCharacters(ids, page?: number, limit?: number): Observable<character[]> {
     return this.http.get<character[]>(`${this.ApiUrl}/character/${ids}`);
+    
   }
 
   getSingleCharacter(id: string): Observable<character> {
-    return this.http.get<character>(`${this.ApiUrl}/character/${id}`);
+    //return this.http.get<character>(`${this.ApiUrl}/character/${id}`);
+    return this.http.get<character>(`${this.MyApiUrl}/${id}`);
   }
 
   getApiEpisodes(url: string) {
     return this.http.get(url);
+  }
+
+  getAllCharacters(page: number, limit: number): Observable<character[]>{
+    return this.http.get<character[]>(`${this.MyApiUrl}/${page}/${limit}`);
   }
 }

@@ -30,7 +30,7 @@ export class CharacterComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.rickAndMortyService.getSingleCharacter(this.id).subscribe(
       (ApiCharacter: character) => {
-        this.character = ApiCharacter;
+        this.character = ApiCharacter[0];
         this.setEpisode();
       },
       () => {

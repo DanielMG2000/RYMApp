@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  UrlApi: 'https://rickandmortyapi.com/api'
+  UrlApi: 'https://rickandmortyapi.com/api',
+  UrlMyApi: 'http://localhost:1800/getCharacters'
 };
 
 /*
